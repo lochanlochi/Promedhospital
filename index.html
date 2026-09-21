@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Promed Hospital — Multi-Speciality Care, Banashankari, Bangalore</title>
+<meta name="description" content="Promed Hospital, Banashankari 2nd Stage, Bangalore. Multi-speciality 24×7 hospital led by Dr. HP Madhusudan. Orthopaedics, joint replacement, cardiology, ENT & more. Book an appointment today." />
+<meta name="theme-color" content="#0b3b53" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#0a2530;
+  --deep:#0b3b53;
+  --teal:#0f7a86;
+  --teal-2:#13a2a6;
+  --mint:#e6f6f4;
+  --sand:#f7f4ee;
+  --gold:#e0a458;
+  --coral:#f26d5b;
+  --paper:#fbfaf7;
+  --white:#ffffff;
+  --muted:#5b6b72;
+  --line:rgba(11,59,83,.12);
+  --shadow:0 24px 60px -30px rgba(10,37,48,.45);
+  --shadow-sm:0 12px 32px -18px rgba(10,37,48,.4);
+  --r:22px;
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Plus Jakarta Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{width:min(1180px,92vw);margin-inline:auto}
+section{position:relative}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--teal);
+}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);border-radius:2px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:-.02em;color:var(--deep)}
+h2{font-size:clamp(2rem,4.4vw,3.2rem)}
+.lead{color:var(--muted);font-size:1.05rem;max-width:56ch}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.95rem 1.6rem;border-radius:999px;font-weight:700;font-size:.95rem;
+  border:1.5px solid transparent;cursor:pointer;transition:.35s cubic-bezier(.2,.8,.2,1);
+  white-space:nowrap;
+}
+.btn-primary{background:var(--deep);color:#fff;box-shadow:var(--shadow-sm)}
+.btn-primary:hover{background:var(--teal);transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:#3a2410}
+.btn-gold:hover{filter:brightness(1.06);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line);color:var(--deep);background:rgba(255,255,255,.5)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ---------- top bar ---------- */
+.topbar{
+  background:linear-gradient(90deg,var(--deep),var(--teal));
+  color:#eaf6f5;font-size:.8rem;font-weight:500;
+}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.5rem 0;flex-wrap:wrap}
+.topbar a{display:inline-flex;align-items:center;gap:.4rem;opacity:.92}
+.topbar a:hover{opacity:1}
+.topbar .pill{background:rgba(255,255,255,.14);padding:.25rem .7rem;border-radius:999px}
+
+/* ---------- nav ---------- */
+header{position:sticky;top:0;z-index:60;transition:.4s}
+nav{
+  background:rgba(251,250,247,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;transition:.4s;
+}
+header.scrolled nav{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px rgba(10,37,48,.5)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0;gap:1rem}
+.brand{display:flex;align-items:center;gap:.7rem;font-weight:800}
+.brand .mark{
+  width:44px;height:44px;border-radius:13px;flex:none;position:relative;
+  background:linear-gradient(135deg,var(--teal),var(--deep));
+  display:grid;place-items:center;box-shadow:var(--shadow-sm);
+}
+.brand .mark svg{width:24px;height:24px}
+.brand .txt strong{font-family:var(--serif);font-size:1.22rem;color:var(--deep);display:block;line-height:1}
+.brand .txt span{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);font-weight:700}
+.menu{display:flex;gap:.4rem;align-items:center}
+.menu a{padding:.55rem .85rem;border-radius:10px;font-weight:600;font-size:.92rem;color:var(--ink);transition:.25s}
+.menu a:hover{background:var(--mint);color:var(--teal)}
+.nav-cta{display:flex;gap:.6rem;align-items:center}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{width:24px;height:2.5px;background:var(--deep);border-radius:2px;transition:.3s}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(3rem,7vw,6rem) 0 clamp(4rem,8vw,7rem);position:relative;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(60% 55% at 82% 8%,rgba(19,162,166,.16),transparent 60%),
+    radial-gradient(50% 60% at 8% 90%,rgba(224,164,88,.14),transparent 60%);
+}
+.blob{position:absolute;border-radius:50%;filter:blur(10px);z-index:-1;opacity:.5}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.hero h1{font-size:clamp(2.6rem,5.6vw,4.5rem);margin:1.1rem 0 1.2rem}
+.hero h1 em{font-style:italic;color:var(--teal);position:relative}
+.hero .lead{font-size:1.12rem;margin-bottom:2rem}
+.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.trust{display:flex;gap:1.8rem;margin-top:2.4rem;flex-wrap:wrap}
+.trust .item{display:flex;flex-direction:column}
+.trust .num{font-family:var(--serif);font-size:1.9rem;color:var(--deep);font-weight:600;line-height:1}
+.trust .lbl{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.02em;margin-top:.3rem}
+
+/* hero visual */
+.hero-visual{position:relative}
+.hero-card{
+  border-radius:28px;overflow:hidden;position:relative;
+  aspect-ratio:4/4.6;box-shadow:var(--shadow);
+  background:
+    linear-gradient(180deg,rgba(11,59,83,0) 40%,rgba(11,59,83,.72)),
+    linear-gradient(135deg,#0f7a86,#0b3b53);
+}
+.hero-card .scene{position:absolute;inset:0;opacity:.9}
+.hero-card .caption{position:absolute;left:0;right:0;bottom:0;padding:1.6rem;color:#fff}
+.hero-card .caption h3{color:#fff;font-size:1.35rem}
+.hero-card .caption p{font-size:.9rem;opacity:.85}
+.float-badge{
+  position:absolute;background:var(--white);border-radius:16px;padding:.85rem 1.05rem;
+  box-shadow:var(--shadow);display:flex;align-items:center;gap:.7rem;
+}
+.float-badge .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:none;color:#fff}
+.float-badge strong{display:block;font-size:.98rem;color:var(--deep)}
+.float-badge small{color:var(--muted);font-size:.74rem;font-weight:600}
+.badge-rating{top:8%;left:-6%}
+.badge-24{bottom:16%;right:-7%}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+.float-badge{animation:floaty 5s ease-in-out infinite}
+.badge-24{animation-delay:1.4s}
+
+/* marquee */
+.marquee{background:var(--deep);color:#dff1ef;overflow:hidden;padding:.95rem 0;border-block:1px solid rgba(255,255,255,.08)}
+.marquee-track{display:flex;gap:3rem;white-space:nowrap;animation:scroll 26s linear infinite;font-family:var(--serif);font-size:1.05rem;font-style:italic}
+.marquee-track span{display:inline-flex;align-items:center;gap:3rem}
+.marquee-track span::after{content:"✦";color:var(--gold);font-style:normal}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- section shells ---------- */
+.sec{padding:clamp(4rem,8vw,7rem) 0}
+.sec-head{max-width:640px;margin-bottom:3rem}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head h2{margin:.8rem 0 1rem}
+
+/* specialties */
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.1rem}
+.spec{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r);
+  padding:1.6rem 1.5rem;transition:.4s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden;
+}
+.spec::after{content:"";position:absolute;left:0;top:0;height:100%;width:4px;background:var(--teal);transform:scaleY(0);transform-origin:bottom;transition:.4s}
+.spec:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.spec:hover::after{transform:scaleY(1)}
+.spec .ic{width:52px;height:52px;border-radius:15px;background:var(--mint);color:var(--teal);display:grid;place-items:center;margin-bottom:1.1rem;transition:.4s}
+.spec:hover .ic{background:var(--teal);color:#fff}
+.spec h3{font-size:1.15rem;margin-bottom:.4rem}
+.spec p{font-size:.88rem;color:var(--muted)}
+
+/* about split */
+.about{background:linear-gradient(180deg,var(--sand),var(--paper))}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.about-media{position:relative}
+.about-media .frame{border-radius:26px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:1/1.05;background:linear-gradient(135deg,#dcefee,#bfe3e1)}
+.stat-chip{position:absolute;background:#fff;border-radius:18px;padding:1.1rem 1.3rem;box-shadow:var(--shadow);text-align:center}
+.stat-chip .n{font-family:var(--serif);font-size:2rem;color:var(--teal);font-weight:600;line-height:1}
+.stat-chip .t{font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.about ul.ticks{list-style:none;margin:1.6rem 0 2rem;display:grid;gap:.8rem}
+.about ul.ticks li{display:flex;gap:.7rem;font-weight:600;color:var(--ink);font-size:.98rem}
+.about ul.ticks li svg{flex:none;color:var(--teal);margin-top:3px}
+
+/* doctor */
+.doctor{background:var(--deep);color:#eaf6f5;overflow:hidden}
+.doctor::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 85% 20%,rgba(19,162,166,.28),transparent 60%);z-index:0}
+.doctor .wrap{position:relative;z-index:1}
+.doctor h2{color:#fff}
+.doc-card{
+  display:grid;grid-template-columns:.8fr 1.2fr;gap:0;border-radius:var(--r);overflow:hidden;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px);
+}
+.doc-photo{background:linear-gradient(160deg,#13a2a6,#0b3b53);min-height:340px;position:relative;display:grid;place-items:center}
+.doc-photo .avatar{width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.3);display:grid;place-items:center;font-family:var(--serif);font-size:3.4rem;color:#fff}
+.doc-photo .exp{position:absolute;bottom:1.2rem;left:1.2rem;right:1.2rem;background:rgba(10,37,48,.55);border-radius:14px;padding:.7rem 1rem;font-size:.82rem;text-align:center;backdrop-filter:blur(4px)}
+.doc-info{padding:clamp(1.6rem,3vw,2.6rem)}
+.doc-info h3{color:#fff;font-size:1.8rem}
+.doc-info .role{color:var(--gold);font-weight:700;font-size:.9rem;letter-spacing:.04em;margin:.3rem 0 1rem}
+.doc-info .qual{opacity:.85;font-size:.95rem;margin-bottom:1.4rem}
+.doc-meta{display:flex;gap:1.6rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.doc-meta .m .v{font-family:var(--serif);font-size:1.5rem;color:#fff}
+.doc-meta .m .k{font-size:.74rem;opacity:.7;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.doc-hours{background:rgba(255,255,255,.07);border-radius:12px;padding:.9rem 1.1rem;font-size:.88rem;margin-bottom:1.5rem;display:flex;gap:.7rem;align-items:center}
+
+/* stories */
+.stories{background:var(--sand)}
+.story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.3rem}
+.story{
+  background:#fff;border-radius:var(--r);padding:1.8rem;box-shadow:var(--shadow-sm);
+  border:1px solid var(--line);display:flex;flex-direction:column;gap:1rem;position:relative;
+}
+.story .quote{font-family:var(--serif);font-size:3.4rem;color:var(--mint);line-height:.5;height:22px}
+.story p{font-size:.95rem;color:var(--ink)}
+.story .who{display:flex;align-items:center;gap:.8rem;margin-top:auto}
+.story .who .av{width:44px;height:44px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
+.story .who strong{display:block;font-size:.92rem}
+.story .who small{color:var(--muted);font-size:.76rem}
+.stars{color:var(--gold);font-size:.9rem;letter-spacing:2px}
+
+/* insurance */
+.ins-grid{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+.ins{
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:1rem 1.6rem;font-weight:700;
+  color:var(--deep);display:flex;align-items:center;gap:.6rem;transition:.3s;font-size:.95rem;
+}
+.ins:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-3px)}
+.ins svg{color:var(--teal)}
+
+/* appointment / contact */
+.book{background:linear-gradient(160deg,var(--deep),var(--teal));color:#fff;overflow:hidden;position:relative}
+.book::after{content:"";position:absolute;right:-10%;bottom:-30%;width:520px;height:520px;border-radius:50%;background:rgba(255,255,255,.05)}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start;position:relative;z-index:1}
+.book h2{color:#fff}
+.book .lead{color:rgba(255,255,255,.82)}
+.contact-list{display:grid;gap:1.1rem;margin-top:2rem}
+.contact-list .row{display:flex;gap:1rem;align-items:flex-start}
+.contact-list .ic{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex:none}
+.contact-list .row strong{display:block;font-size:1rem}
+.contact-list .row span{opacity:.82;font-size:.92rem}
+form.card{background:#fff;border-radius:24px;padding:clamp(1.6rem,3vw,2.4rem);box-shadow:var(--shadow);color:var(--ink)}
+form.card h3{color:var(--deep);margin-bottom:.3rem}
+form.card p.sub{color:var(--muted);font-size:.9rem;margin-bottom:1.5rem}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:.82rem;font-weight:700;color:var(--deep);margin-bottom:.4rem}
+.field input,.field select,.field textarea{
+  width:100%;padding:.85rem 1rem;border:1.5px solid var(--line);border-radius:12px;
+  font-family:inherit;font-size:.95rem;background:var(--paper);transition:.25s;color:var(--ink);
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal);background:#fff;box-shadow:0 0 0 4px rgba(19,162,166,.12)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-note{font-size:.78rem;color:var(--muted);margin-top:.8rem;text-align:center}
+.form-ok{display:none;background:var(--mint);color:var(--teal);border-radius:12px;padding:1rem;font-weight:600;font-size:.92rem;margin-top:1rem;text-align:center}
+
+/* map */
+.mapsec{padding:clamp(4rem,8vw,7rem) 0 0}
+.map-frame{position:relative;margin-top:1rem;height:clamp(340px,50vw,520px);width:100%;overflow:hidden;filter:saturate(1.05)}
+.map-frame iframe{width:100%;height:100%;display:block;filter:grayscale(.15) contrast(1.03)}
+.map-frame::before{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 18px 40px -30px rgba(10,37,48,.6),inset 0 -18px 40px -30px rgba(10,37,48,.6);z-index:2}
+.map-pin{
+  position:absolute;left:clamp(1rem,4vw,3rem);top:clamp(1rem,4vw,2.4rem);z-index:3;
+  background:#fff;border-radius:16px;padding:.9rem 1.2rem;box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:.8rem;transition:.3s;
+}
+.map-pin:hover{transform:translateY(-3px)}
+.map-pin .mp-ic{width:42px;height:42px;border-radius:12px;background:var(--coral);display:grid;place-items:center;flex:none}
+.map-pin strong{display:block;font-size:.98rem;color:var(--deep)}
+.map-pin small{color:var(--teal);font-size:.8rem;font-weight:700}
+
+/* footer */
+footer{background:var(--ink);color:#a9c2c9;padding:clamp(3rem,6vw,5rem) 0 2rem}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:2.4rem;margin-bottom:3rem}
+footer h4{color:#fff;font-family:var(--sans);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.2rem;font-weight:700}
+footer a{display:block;padding:.3rem 0;font-size:.92rem;transition:.25s}
+footer a:hover{color:var(--teal-2)}
+.foot-brand .brand .txt strong{color:#fff}
+.foot-brand p{font-size:.9rem;margin:1rem 0;max-width:34ch}
+.socials{display:flex;gap:.6rem}
+.socials a{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.08);display:grid;place-items:center;padding:0}
+.socials a:hover{background:var(--teal)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.6rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.82rem}
+
+/* floating call */
+.fab{position:fixed;right:20px;bottom:20px;z-index:70;display:flex;flex-direction:column;gap:.7rem}
+.fab a{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:var(--shadow);color:#fff;transition:.3s}
+.fab .call{background:var(--coral)}
+.fab .wa{background:#25d366}
+.fab a:hover{transform:scale(1.08)}
+.fab a::after{content:attr(data-tip);position:absolute;right:66px;background:var(--ink);color:#fff;font-size:.76rem;padding:.4rem .7rem;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:.25s;font-weight:600}
+.fab a:hover::after{opacity:1}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:.8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* responsive */
+@media(max-width:960px){
+  .hero-grid,.about-grid,.book-grid,.doc-card{grid-template-columns:1fr}
+  .doc-photo{min-height:260px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .badge-rating{left:2%}
+  .badge-24{right:2%}
+}
+@media(max-width:720px){
+  .menu,.nav-cta .btn-ghost{display:none}
+  .burger{display:flex}
+  .menu.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--paper);padding:1rem 6vw 1.4rem;border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+  .menu.open a{padding:.8rem 0;border-bottom:1px solid var(--line)}
+  .two{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .topbar .wrap{justify-content:center}
+  .hero h1{font-size:2.5rem}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- top bar -->
+<div class="topbar">
+  <div class="wrap">
+    <span class="pill">🟢 Open 24 × 7 — Emergency &amp; Casualty Always On</span>
+    <div style="display:flex;gap:1.4rem;flex-wrap:wrap">
+      <a href="tel:+918000000000">📞 Call the hospital</a>
+      <a href="https://maps.google.com/?q=Promed+Hospital+Banashankari+2nd+Stage+Bangalore" target="_blank" rel="noopener">📍 3781, 13th Cross, Banashankari 2nd Stage</a>
+    </div>
+  </div>
+</div>
+
+<!-- nav -->
+<header id="top">
+  <nav>
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand">
+        <span class="mark">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-9C1 8.5 3 4.5 7 4.5c2 0 3.4 1.2 5 3 1.6-1.8 3-3 5-3 4 0 6 4 4.5 7.5C19 16.65 12 21 12 21Z" stroke="#fff" stroke-width="1.6"/><path d="M7.5 12h2l1.2-2.2L13 14l1.2-2h2.3" stroke="#e0a458" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="txt"><strong>Promed</strong><span>Hospital</span></span>
+      </a>
+      <div class="menu" id="menu">
+        <a href="#specialties">Specialities</a>
+        <a href="#about">About</a>
+        <a href="#doctor">Our Doctor</a>
+        <a href="#stories">Patient Stories</a>
+        <a href="#insurance">Insurance</a>
+        <a href="#map">Location</a>
+        <a href="#book">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a href="tel:+918000000000" class="btn btn-ghost">Emergency</a>
+        <a href="#book" class="btn btn-primary">Book Appointment</a>
+        <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">Multi-Speciality Hospital · Banashankari, Bangalore</span>
+      <h1>Healing built on <em>trust</em>, precision &amp; genuine care.</h1>
+      <p class="lead">For over three decades, Promed Hospital has cared for Banashankari's families with expert doctors, honest advice and round-the-clock attention — treating every patient like our own.</p>
+      <div class="hero-actions">
+        <a href="#book" class="btn btn-primary">Book an Appointment
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#doctor" class="btn btn-ghost">Meet our specialist</a>
+      </div>
+      <div class="trust">
+        <div class="item"><span class="num" data-count="4.5" data-dec="1">4.5</span><span class="lbl">★ Patient Rating</span></div>
+        <div class="item"><span class="num" data-count="31">31</span><span class="lbl">Years of Expertise</span></div>
+        <div class="item"><span class="num" data-count="172">172</span><span class="lbl">Patient Stories</span></div>
+        <div class="item"><span class="num" data-count="189">189</span><span class="lbl">Treatments Offered</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-card">
+        <svg class="scene" viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17b3b7"/><stop offset="1" stop-color="#0b3b53"/></linearGradient>
+          </defs>
+          <rect width="400" height="460" fill="url(#g1)"/>
+          <circle cx="320" cy="80" r="120" fill="#ffffff" opacity="0.06"/>
+          <circle cx="70" cy="360" r="150" fill="#ffffff" opacity="0.05"/>
+          <path d="M0 300 Q120 250 200 300 T400 290 V460 H0 Z" fill="#ffffff" opacity="0.06"/>
+          <g stroke="#ffffff" stroke-width="3" opacity="0.5" fill="none">
+            <path d="M120 150 h50 v-30 h40 v30 h50 v40 h-50 v30 h-40 v-30 h-50 z"/>
+          </g>
+          <g opacity="0.85">
+            <path d="M60 220 h40 l15 -35 20 70 15 -35 h40" stroke="#e0a458" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+        <div class="caption">
+          <h3>Compassion in every corner</h3>
+          <p>Modern diagnostics · 25 beds · wheelchair accessible · caring nursing staff</p>
+        </div>
+      </div>
+      <div class="float-badge badge-rating">
+        <span class="ic" style="background:var(--gold)">★</span>
+        <span><strong>4.5 / 5 rating</strong><small>95% recommend us</small></span>
+      </div>
+      <div class="float-badge badge-24">
+        <span class="ic" style="background:var(--coral)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 7v5l3 2" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="2"/></svg>
+        </span>
+        <span><strong>Open 24 × 7</strong><small>Emergency ready</small></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Orthopaedics &amp; Joint Replacement</span><span>Cardiology</span><span>General Surgery</span><span>ENT Care</span><span>Gastroenterology</span><span>Paediatrics</span><span>Physiotherapy</span><span>Plastic &amp; Cosmetic Surgery</span>
+    <span>Orthopaedics &amp; Joint Replacement</span><span>Cardiology</span><span>General Surgery</span><span>ENT Care</span><span>Gastroenterology</span><span>Paediatrics</span><span>Physiotherapy</span><span>Plastic &amp; Cosmetic Surgery</span>
+  </div>
+</div>
+
+<!-- specialties -->
+<section class="sec" id="specialties">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What we treat</span>
+      <h2>Specialities under one caring roof</h2>
+      <p class="lead">From bones and joints to the heart, digestive system and everyday family health — Promed brings a full spectrum of expert care to your neighbourhood, with 189 treatments and surgeries available.</p>
+    </div>
+    <div class="spec-grid">
+      <article class="spec reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M8 4v4a4 4 0 0 0 8 0V4M8 20v-4a4 4 0 0 1 8 0v4M6 4h4M14 4h4M6 20h4M14 20h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Orthopaedics</h3>
+        <p>Joint replacement, fracture care, spine &amp; sports-injury treatment led by a senior surgeon with 31 years of experience.</p>
+      </article>
+      <article class="spec reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.5-9-9.5C1.5 6.5 4 4 7 4c2 0 3.5 1.5 5 3.5C13.5 5.5 15 4 17 4c3 0 5.5 2.5 4 6.5-2 5-9 9.5-9 9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Cardiology</h3>
+        <p>Heart health evaluation, angiography, angioplasty and coronary bypass support for timely, life-saving care.</p>
+      </article>
+      <article class="spec reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M9 4h6l-1 5 4 3-2 8H8l-2-8 4-3-1-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>General Surgery</h3>
+        <p>Safe, precise surgical procedures with modern operating facilities and attentive post-operative recovery care.</p>
+      </article>
+      <article class="spec reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Paediatrics</h3>
+        <p>Gentle, expert care for infants, children and adolescents — from routine check-ups to specialist attention.</p>
+      </article>
+      <article class="spec reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M7 3v6a5 5 0 0 0 10 0V3M12 14v7M8 21h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>ENT Care</h3>
+        <p>Diagnosis and treatment for ear, nose and throat conditions, including tonsillectomy and septoplasty.</p>
+      </article>
+      <article class="spec reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Gastroenterology</h3>
+        <p>Care for the digestive system with modern diagnostics, endoscopic evaluation and dedicated follow-up.</p>
+      </article>
+      <article class="spec reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 20V8l6-4 6 4v12M9 20v-5h6v5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Physiotherapy</h3>
+        <p>Structured rehabilitation and physical therapy to restore strength, mobility and confidence after treatment.</p>
+      </article>
+      <article class="spec reveal">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 0 1 16 0M4 12a8 8 0 0 0 16 0M12 4v16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Plastic &amp; Cosmetic Surgery</h3>
+        <p>Reconstructive and cosmetic procedures performed with care, precision and natural, confidence-building results.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- about -->
+<section class="sec about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-media reveal">
+      <div class="frame">
+        <svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="420" fill="#cbe8e5"/>
+          <circle cx="300" cy="90" r="90" fill="#0f7a86" opacity="0.15"/>
+          <rect x="40" y="150" width="320" height="230" rx="18" fill="#ffffff" opacity="0.6"/>
+          <rect x="70" y="185" width="120" height="14" rx="7" fill="#0b3b53" opacity="0.3"/>
+          <rect x="70" y="215" width="200" height="10" rx="5" fill="#0b3b53" opacity="0.2"/>
+          <rect x="70" y="235" width="170" height="10" rx="5" fill="#0b3b53" opacity="0.2"/>
+          <path d="M70 300 h40 l12 -28 16 56 12 -28 h130" stroke="#0f7a86" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="150" cy="80" r="34" fill="#e0a458" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="stat-chip" style="bottom:-24px;left:-18px">
+        <div class="n">25</div><div class="t">In-patient Beds</div>
+      </div>
+    </div>
+    <div class="about-copy reveal">
+      <span class="eyebrow">About Promed</span>
+      <h2>A neighbourhood hospital with big-hospital standards.</h2>
+      <p class="lead">Promed Hospital stands as a trusted name in Banashankari 2nd Stage — delivering compassionate, patient-centred care to individuals of all ages. We combine experienced specialists, modern facilities and honest, transparent treatment so you always know you're in safe hands.</p>
+      <ul class="ticks">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Open 24 × 7 with emergency &amp; casualty services</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Wheelchair accessible &amp; senior-friendly premises</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Transparent billing — cash &amp; online payment accepted</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Cashless treatment with leading insurance partners</li>
+      </ul>
+      <a href="#book" class="btn btn-primary">Plan your visit</a>
+    </div>
+  </div>
+</section>
+
+<!-- doctor -->
+<section class="sec doctor" id="doctor">
+  <div class="wrap">
+    <div class="sec-head reveal" style="max-width:600px">
+      <span class="eyebrow" style="color:var(--gold)">Meet the specialist</span>
+      <h2>Care led by an expert you can trust</h2>
+    </div>
+    <div class="doc-card reveal">
+      <div class="doc-photo">
+        <div class="avatar">HM</div>
+        <div class="exp">🩺 31 years of clinical &amp; surgical experience</div>
+      </div>
+      <div class="doc-info">
+        <h3>Dr. HP Madhusudan</h3>
+        <div class="role">Joint Replacement &amp; Orthopaedic Surgeon</div>
+        <div class="qual">MBBS · MS (Orthopaedics) · M.Ch (Orthopaedics)</div>
+        <div class="doc-meta">
+          <div class="m"><div class="v">95%</div><div class="k">Recommended</div></div>
+          <div class="m"><div class="v">143</div><div class="k">Patient Votes</div></div>
+          <div class="m"><div class="v">₹450</div><div class="k">Consultation</div></div>
+        </div>
+        <div class="doc-hours">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#e0a458" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="#e0a458" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span><strong>Mon – Sun</strong> &nbsp;·&nbsp; 10:30 AM – 1:00 PM &nbsp;&amp;&nbsp; 6:00 PM – 8:00 PM</span>
+        </div>
+        <a href="#book" class="btn btn-gold">Book with Dr. Madhusudan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- stories -->
+<section class="sec stories" id="stories">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Patient stories</span>
+      <h2>Loved by the families we care for</h2>
+      <p class="lead" style="margin-inline:auto">A 4.5-star rating built from 172 verified patient stories. Here's what a few of them shared.</p>
+    </div>
+    <div class="story-grid">
+      <article class="story reveal">
+        <div class="quote">“</div>
+        <div class="stars">★★★★★</div>
+        <p>Accurate diagnosis with minimal tests. Builds confidence to undergo surgery. 100% resolution of my spine problem, minimal hospitalisation and good nursing care at Promed. Transparent billing throughout.</p>
+        <div class="who"><span class="av">R</span><span><strong>Ravi K.</strong><small>Spinal disc surgery · Verified patient</small></span></div>
+      </article>
+      <article class="story reveal">
+        <div class="quote">“</div>
+        <div class="stars">★★★★★</div>
+        <p>It was a quick visit — the doctor came in between his regular rounds, which is really appreciated. He doesn't suggest anything unnecessarily. Honest and to the point.</p>
+        <div class="who"><span class="av">M</span><span><strong>Mohan</strong><small>Joint pain · Verified patient</small></span></div>
+      </article>
+      <article class="story reveal">
+        <div class="quote">“</div>
+        <div class="stars">★★★★★</div>
+        <p>A very humble doctor. He explains the problem to the patient properly and doesn't give painkillers or antibiotics unnecessarily. Genuinely patient-first care.</p>
+        <div class="who"><span class="av">S</span><span><strong>Swaroop</strong><small>Fracture treatment · Verified patient</small></span></div>
+      </article>
+      <article class="story reveal">
+        <div class="quote">“</div>
+        <div class="stars">★★★★★</div>
+        <p>Doctor is a very humble person. He discussed the problem, understood it thoroughly and then prescribed medicine. The whole experience felt calm and reassuring.</p>
+        <div class="who"><span class="av">S</span><span><strong>Santhosh</strong><small>Orthopaedic therapy · Verified patient</small></span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- insurance -->
+<section class="sec" id="insurance">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Cashless &amp; covered</span>
+      <h2>Insurance &amp; corporate tie-ups</h2>
+      <p class="lead" style="margin-inline:auto">We've partnered with leading health insurers so your medical expenses are taken care of — with cashless treatment and hassle-free claims support.</p>
+    </div>
+    <div class="ins-grid reveal">
+      <div class="ins"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Max Bupa Health Insurance</div>
+      <div class="ins"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Star Health Insurance</div>
+      <div class="ins"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Care Health Insurance</div>
+      <div class="ins"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>Shriram General Insurance</div>
+    </div>
+  </div>
+</section>
+
+<!-- book / contact -->
+<section class="sec book" id="book">
+  <div class="wrap book-grid">
+    <div class="book-info reveal">
+      <span class="eyebrow" style="color:var(--gold)">Get in touch</span>
+      <h2>Book your appointment</h2>
+      <p class="lead">Tell us how we can help and our team will call you back to confirm a convenient time. For emergencies, we're open 24 × 7 — just walk in or call.</p>
+      <div class="contact-list">
+        <div class="row">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="10" r="2.5" stroke="#fff" stroke-width="1.7"/></svg></span>
+          <div><strong>Visit us</strong><span>3781, 13th Cross, Banashankari 2nd Stage,<br/>Beside Lakshmi Sagar Hotel, Bangalore</span></div>
+        </div>
+        <div class="row">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6c0 8 6 14 14 14l2-3-4-2-2 2c-3-1.5-5.5-4-7-7l2-2-2-4-3 2Z" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+          <div><strong>Call us</strong><span>Available 24 × 7 for appointments &amp; emergencies</span></div>
+        </div>
+        <div class="row">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+          <div><strong>Timings</strong><span>Hospital open 24×7 · OPD Mon–Sun, 10:30 AM–1 PM &amp; 6–8 PM</span></div>
+        </div>
+        <div class="row">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2" stroke="#fff" stroke-width="1.7"/><path d="M3 10h18" stroke="#fff" stroke-width="1.7"/></svg></span>
+          <div><strong>Payment</strong><span>Cash · Online payment · Cashless insurance</span></div>
+        </div>
+      </div>
+    </div>
+    <form class="card reveal" id="apptForm" novalidate>
+      <h3>Request a call-back</h3>
+      <p class="sub">Fill in your details and we'll get right back to you.</p>
+      <div class="field">
+        <label for="name">Full name</label>
+        <input id="name" name="name" type="text" placeholder="Your name" required />
+      </div>
+      <div class="two">
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" placeholder="+91 " required />
+        </div>
+        <div class="field">
+          <label for="dept">Department</label>
+          <select id="dept" name="dept">
+            <option>Orthopaedics</option>
+            <option>Cardiology</option>
+            <option>General Surgery</option>
+            <option>Paediatrics</option>
+            <option>ENT</option>
+            <option>Gastroenterology</option>
+            <option>Physiotherapy</option>
+            <option>General consultation</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="date">Preferred date</label>
+        <input id="date" name="date" type="date" />
+      </div>
+      <div class="field">
+        <label for="msg">Message (optional)</label>
+        <textarea id="msg" name="msg" rows="3" placeholder="Briefly describe your concern"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Request appointment</button>
+      <p class="form-note">By submitting, you agree to be contacted by Promed Hospital regarding your request.</p>
+      <div class="form-ok" id="formOk">✓ Thank you! Your request has been noted — our team will call you shortly.</div>
+    </form>
+  </div>
+</section>
+
+<!-- map -->
+<section class="mapsec" id="map">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Find us</span>
+      <h2>Right in the heart of Banashankari</h2>
+      <p class="lead" style="margin-inline:auto">3781, 13th Cross, Banashankari 2nd Stage — beside Lakshmi Sagar Hotel. Easy to reach, with parking nearby.</p>
+    </div>
+  </div>
+  <div class="map-frame reveal">
+    <iframe
+      title="Promed Hospital location on Google Maps"
+      src="https://maps.google.com/maps?q=Promed%20Hospital%20Banashankari%202nd%20Stage%20Bangalore&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      width="100%" height="100%" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    <a class="map-pin" href="https://maps.google.com/?q=Promed+Hospital+Banashankari+2nd+Stage+Bangalore" target="_blank" rel="noopener">
+      <span class="mp-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z" stroke="#fff" stroke-width="1.7"/><circle cx="12" cy="10" r="2.5" stroke="#fff" stroke-width="1.7"/></svg></span>
+      <span><strong>Promed Hospital</strong><small>Get directions →</small></span>
+    </a>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="brand">
+          <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-9C1 8.5 3 4.5 7 4.5c2 0 3.4 1.2 5 3 1.6-1.8 3-3 5-3 4 0 6 4 4.5 7.5C19 16.65 12 21 12 21Z" stroke="#fff" stroke-width="1.6"/><path d="M7.5 12h2l1.2-2.2L13 14l1.2-2h2.3" stroke="#e0a458" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="txt"><strong>Promed</strong><span>Hospital</span></span>
+        </a>
+        <p>Compassionate, patient-centred multi-speciality care for the families of Banashankari and greater Bangalore.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l.5-3H13V5c0-1 .3-1.5 1.5-1.5H16.5V.8C16.2.75 15 .7 13.7.7 11 .7 9.5 2.2 9.5 5v2H7v3h2.5v9H13v-9Z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5.3 14c-.2.6-1.2 1.1-1.7 1.1-.4 0-1 .1-3.4-1s-3.7-3.4-3.8-3.6c-.1-.2-.9-1.2-.9-2.3s.6-1.6.8-1.9c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1.9 1.5.9 1.8.8.2-.1.4-.4.6-.7.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.3.1.1.1.5-.1 1Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Specialities</h4>
+        <a href="#specialties">Orthopaedics</a>
+        <a href="#specialties">Cardiology</a>
+        <a href="#specialties">General Surgery</a>
+        <a href="#specialties">Paediatrics</a>
+        <a href="#specialties">ENT &amp; Gastro</a>
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <a href="#about">About us</a>
+        <a href="#doctor">Our doctor</a>
+        <a href="#stories">Patient stories</a>
+        <a href="#insurance">Insurance</a>
+        <a href="#book">Book appointment</a>
+      </div>
+      <div>
+        <h4>Reach us</h4>
+        <a href="https://maps.google.com/?q=Promed+Hospital+Banashankari+2nd+Stage+Bangalore" target="_blank" rel="noopener">3781, 13th Cross, Banashankari 2nd Stage, Bangalore</a>
+        <a href="tel:+918000000000">Call the hospital · 24×7</a>
+        <a href="#book">Emergency &amp; casualty</a>
+        <a href="https://promedhospital.co.in">promedhospital.co.in</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> Promed Hospital, Banashankari 2nd Stage, Bangalore. All rights reserved.</span>
+      <span>Multi-Speciality Hospital · Open 24 × 7 · Wheelchair accessible</span>
+    </div>
+  </div>
+</footer>
+
+<!-- floating actions -->
+<div class="fab">
+  <a class="call" href="tel:+918000000000" data-tip="Call now" aria-label="Call">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 6c0 8 6 14 14 14l2-3-4-2-2 2c-3-1.5-5.5-4-7-7l2-2-2-4-3 2Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg>
+  </a>
+  <a class="wa" href="https://wa.me/918000000000" target="_blank" rel="noopener" data-tip="WhatsApp us" aria-label="WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5.3 14c-.2.6-1.2 1.1-1.7 1.1-.4 0-1 .1-3.4-1s-3.7-3.4-3.8-3.6c-.1-.2-.9-1.2-.9-2.3s.6-1.6.8-1.9c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1.9 1.5.9 1.8.8.2-.1.4-.4.6-.7.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.3.1.1.1.5-.1 1Z"/></svg>
+  </a>
+</div>
+
+<script>
+// year
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// nav scroll state
+const header = document.getElementById('top');
+addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 20));
+
+// mobile menu
+const burger = document.getElementById('burger'), menu = document.getElementById('menu');
+burger.addEventListener('click', () => menu.classList.toggle('open'));
+menu.addEventListener('click', e => { if(e.target.tagName === 'A') menu.classList.remove('open'); });
+
+// reveal on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }});
+}, {threshold:.14});
+document.querySelectorAll('.reveal').forEach((el,i) => { el.style.transitionDelay = (i%4*60)+'ms'; io.observe(el); });
+
+// count-up
+function animateCount(el){
+  const target = parseFloat(el.dataset.count), dec = +(el.dataset.dec||0);
+  let start = 0, dur = 1400, t0 = null;
+  function step(t){
+    if(!t0) t0 = t;
+    const p = Math.min((t - t0)/dur, 1);
+    const eased = 1 - Math.pow(1-p, 3);
+    el.textContent = (target*eased).toFixed(dec);
+    if(p < 1) requestAnimationFrame(step); else el.textContent = target.toFixed(dec);
+  }
+  requestAnimationFrame(step);
+}
+const cio = new IntersectionObserver((entries) => {
+  entries.forEach(en => { if(en.isIntersecting){ animateCount(en.target); cio.unobserve(en.target); }});
+}, {threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+// form
+const form = document.getElementById('apptForm');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  if(!form.name.value.trim() || !form.phone.value.trim()){
+    form.reportValidity(); return;
+  }
+  document.getElementById('formOk').style.display = 'block';
+  form.querySelector('button[type=submit]').textContent = 'Request sent ✓';
+  setTimeout(()=>form.reset(), 400);
+});
+</script>
+</body>
+</html>
