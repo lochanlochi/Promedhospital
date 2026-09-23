@@ -1,10 +1,10 @@
 # Promed Hospital — Deployment Reference
 
-Quick reference for the live setup. Last verified: **2026-09-21** (site confirmed live over HTTPS).
+Quick reference for the live setup. Last verified: **2026-09-23** (site confirmed live over HTTPS).
 
 ## Live URLs
-- **Primary:** https://promedhospital.co.in ✅ live
-- **www:** https://www.promedhospital.co.in ✅ live (redirects to primary)
+- **Primary:** https://www.promedhospital.co.in ✅ live
+- **Apex:** https://promedhospital.co.in ✅ live (308 redirect to www)
 - **Vercel default:** https://promedhospital.vercel.app ✅ live
 
 ## Stack
@@ -20,9 +20,11 @@ Quick reference for the live setup. Last verified: **2026-09-21** (site confirme
 | Type | Name | Value | Purpose |
 |------|------|-------|---------|
 | `A` | `@` | `216.198.79.1` | Apex → Vercel |
-| `CNAME` | `www` | `cname.vercel-dns.com` | www → Vercel (legacy value, works) |
+| `CNAME` | `www` | `cname.vercel-dns.com` | www → Vercel |
 
 > Vercel's newer recommended www value is `9d5696fd4c840440.vercel-dns-017.com` — optional; switching to it clears the "DNS Change Recommended" flag but the current value works fine.
+
+> **Watch out (2026-09-23):** GoDaddy replaced both records with its own "WebsiteBuilder Site" (A @) and `www → promedhospital.co.in.`, which broke the bare domain. If the site stops opening, check these two records first and set them back to the values above. Saving DNS edits requires the account owner's 2FA code.
 
 Leave untouched at GoDaddy: the two `NS` records, `SOA`, `CNAME _domainconnect`, and `TXT _dmarc`.
 
