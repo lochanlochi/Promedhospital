@@ -27,9 +27,27 @@
   --shadow:0 24px 60px -30px rgba(10,37,48,.45);
   --shadow-sm:0 12px 32px -18px rgba(10,37,48,.4);
   --r:22px;
+  --ivory:#f4f0e8;
+  --ease:cubic-bezier(.22,1,.36,1);
   --serif:"Fraunces",Georgia,serif;
   --sans:"Plus Jakarta Sans",system-ui,sans-serif;
 }
+::selection{background:var(--teal);color:#fff}
+html{scrollbar-color:var(--teal) transparent}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--teal),var(--deep));border-radius:20px;border:3px solid var(--paper)}
+::-webkit-scrollbar-track{background:transparent}
+
+/* film grain + ambient atmosphere */
+.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.045;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:9999;
+  background:linear-gradient(90deg,var(--gold),var(--teal-2),var(--teal));box-shadow:0 0 12px rgba(19,162,166,.6)}
+/* cursor spotlight (desktop) */
+.spotlight{position:fixed;top:0;left:0;width:520px;height:520px;border-radius:50%;z-index:1;pointer-events:none;
+  transform:translate(-50%,-50%);opacity:0;transition:opacity .6s;mix-blend-mode:soft-light;
+  background:radial-gradient(circle,rgba(19,162,166,.55),transparent 62%)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
@@ -56,11 +74,14 @@ h2{font-size:clamp(2rem,4.4vw,3.2rem)}
 
 /* ---------- buttons ---------- */
 .btn{
-  display:inline-flex;align-items:center;gap:.6rem;
+  display:inline-flex;align-items:center;gap:.6rem;position:relative;overflow:hidden;
   padding:.95rem 1.6rem;border-radius:999px;font-weight:700;font-size:.95rem;
   border:1.5px solid transparent;cursor:pointer;transition:.35s cubic-bezier(.2,.8,.2,1);
-  white-space:nowrap;
+  white-space:nowrap;will-change:transform;
 }
+.btn::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;transform:skewX(-22deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);transition:left .7s var(--ease)}
+.btn:hover::after{left:150%}
 .btn-primary{background:var(--deep);color:#fff;box-shadow:var(--shadow-sm)}
 .btn-primary:hover{background:var(--teal);transform:translateY(-2px)}
 .btn-gold{background:var(--gold);color:#3a2410}
@@ -110,6 +131,16 @@ header.scrolled nav{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px
     radial-gradient(50% 60% at 8% 90%,rgba(224,164,88,.14),transparent 60%);
 }
 .blob{position:absolute;border-radius:50%;filter:blur(10px);z-index:-1;opacity:.5}
+.hero::after{content:"";position:absolute;z-index:-1;left:-10%;right:-10%;top:-32%;height:90%;pointer-events:none;
+  background:
+    radial-gradient(34% 44% at 22% 42%,rgba(19,162,166,.30),transparent 60%),
+    radial-gradient(30% 40% at 80% 28%,rgba(224,164,88,.24),transparent 60%),
+    radial-gradient(32% 42% at 58% 72%,rgba(15,122,134,.22),transparent 60%);
+  filter:blur(34px);animation:aurora 18s ease-in-out infinite alternate}
+@keyframes aurora{0%{transform:translate(0,0) scale(1)}50%{transform:translate(3%,2%) scale(1.09)}100%{transform:translate(-3%,-1%) scale(1.05)}}
+.hero-ecg{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:110px;z-index:-1;opacity:.55;pointer-events:none}
+.hero-visual::before{content:"";position:absolute;top:-16%;right:-20%;width:72%;aspect-ratio:1;z-index:-1;
+  background:url("promed-emblem.png") no-repeat center/contain;opacity:.06;transform:rotate(8deg)}
 .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center}
 .hero h1{font-size:clamp(2.6rem,5.6vw,4.5rem);margin:1.1rem 0 1.2rem}
 .hero h1 em{font-style:italic;color:var(--teal);position:relative}
@@ -166,6 +197,11 @@ header.scrolled nav{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px
   padding:1.6rem 1.5rem;transition:.4s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden;
 }
 .spec::after{content:"";position:absolute;left:0;top:0;height:100%;width:4px;background:var(--teal);transform:scaleY(0);transform-origin:bottom;transition:.4s}
+.spec-grid{counter-reset:spec}
+.spec{counter-increment:spec}
+.spec::before{content:counter(spec,decimal-leading-zero);position:absolute;top:1.15rem;right:1.35rem;
+  font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--teal);opacity:.26;transition:.4s;font-feature-settings:"tnum"}
+.spec:hover::before{opacity:.62}
 .spec:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
 .spec:hover::after{transform:scaleY(1)}
 .spec .ic{width:52px;height:52px;border-radius:15px;background:var(--mint);color:var(--teal);display:grid;place-items:center;margin-bottom:1.1rem;transition:.4s}
@@ -177,13 +213,53 @@ header.scrolled nav{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px
 .about{background:linear-gradient(180deg,var(--sand),var(--paper))}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
 .about-media{position:relative}
-.about-media .frame{border-radius:26px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:1/1.05;background:linear-gradient(135deg,#dcefee,#bfe3e1)}
+.about-media .frame{border-radius:26px;box-shadow:var(--shadow);background:linear-gradient(135deg,#dcefee,#bfe3e1)}
+/* care card */
+.care-card{background:var(--white);border:1px solid var(--line);padding:clamp(1.5rem,3vw,2.1rem);display:flex;flex-direction:column;gap:1.3rem;position:relative;overflow:hidden}
+.care-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--gold),var(--teal))}
+.cc-top{display:flex;align-items:center;gap:.9rem}
+.cc-emblem{width:46px;height:46px;flex:none}
+.cc-head strong{display:block;font-family:var(--serif);font-size:1.3rem;color:var(--deep);line-height:1.1}
+.cc-head small{color:var(--muted);font-size:.8rem;font-weight:600}
+.cc-mid{display:flex;align-items:center;gap:1.4rem;padding:.4rem 0;border-block:1px solid var(--line);padding-block:1.2rem}
+.cc-ring{position:relative;width:120px;height:120px;flex:none}
+.cc-ring svg{width:100%;height:100%}
+.cc-ring-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cc-ring-txt b{font-family:var(--serif);font-size:1.9rem;color:var(--deep);line-height:1}
+.cc-ring-txt span{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.cc-rating{display:flex;flex-direction:column;gap:.25rem}
+.cc-stars{color:var(--gold);font-size:1.15rem;letter-spacing:2px}
+.cc-rating b{font-family:var(--serif);font-size:1.7rem;color:var(--deep)}
+.cc-rating>div{display:flex;align-items:baseline;gap:.35rem;color:var(--muted);font-weight:600}
+.cc-rating span{font-size:.82rem;color:var(--muted);font-weight:600}
+.cc-list{list-style:none;display:grid;gap:.7rem}
+.cc-list li{display:flex;align-items:center;gap:.6rem;font-size:.92rem;font-weight:600;color:var(--ink)}
+.cc-list li svg{flex:none;color:var(--teal)}
+@media(max-width:420px){.cc-mid{flex-direction:column;align-items:flex-start;gap:1rem}}
 .stat-chip{position:absolute;background:#fff;border-radius:18px;padding:1.1rem 1.3rem;box-shadow:var(--shadow);text-align:center}
 .stat-chip .n{font-family:var(--serif);font-size:2rem;color:var(--teal);font-weight:600;line-height:1}
 .stat-chip .t{font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
 .about ul.ticks{list-style:none;margin:1.6rem 0 2rem;display:grid;gap:.8rem}
 .about ul.ticks li{display:flex;gap:.7rem;font-weight:600;color:var(--ink);font-size:.98rem}
 .about ul.ticks li svg{flex:none;color:var(--teal);margin-top:3px}
+
+/* why / bento */
+.why{background:linear-gradient(180deg,var(--paper),var(--ivory))}
+.why .sec-head h2 em{font-style:italic;color:var(--teal)}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(158px,auto);gap:1rem}
+.bento .b{border-radius:20px;padding:1.7rem;position:relative;overflow:hidden;border:1px solid var(--line);
+  background:var(--white);display:flex;flex-direction:column;gap:.5rem;justify-content:flex-start;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.bento .b:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:transparent}
+.b .k{font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.b .v{font-family:var(--serif);font-size:2.7rem;font-weight:600;color:var(--deep);line-height:1;font-feature-settings:"tnum"}
+.b p{font-size:.9rem;color:var(--muted);margin-top:auto}
+.bento .b-lg{grid-column:span 2;grid-row:span 2;background:linear-gradient(155deg,var(--deep),var(--teal));color:#eaf6f5;justify-content:space-between}
+.bento .b-lg .k{color:rgba(255,255,255,.75)}.bento .b-lg .v{color:#fff}.bento .b-lg p{color:rgba(255,255,255,.85)}
+.bento .b-teal{background:linear-gradient(150deg,var(--teal),#0c6570);color:#eaf6f5}
+.bento .b-teal .k{color:rgba(255,255,255,.8)}.bento .b-teal .v{color:#fff}.bento .b-teal p{color:rgba(255,255,255,.88)}
+.bento .b-wide{grid-column:span 2}
+@media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}.bento .b-lg{grid-column:span 2;grid-row:span 1}.bento .b-wide{grid-column:span 2}}
+@media(max-width:540px){.bento{grid-template-columns:1fr}.bento .b-lg,.bento .b-wide{grid-column:span 1}}
 
 /* doctor */
 .doctor{background:var(--deep);color:#eaf6f5;overflow:hidden}
@@ -343,6 +419,10 @@ footer a:hover{color:var(--teal-2)}
 </head>
 <body>
 
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="spotlight" id="spotlight" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
 <!-- top bar -->
 <div class="topbar">
   <div class="wrap">
@@ -382,6 +462,7 @@ footer a:hover{color:var(--teal-2)}
 
 <!-- hero -->
 <section class="hero">
+  <canvas id="ecg" class="hero-ecg" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
     <div class="hero-copy reveal">
       <span class="eyebrow">Multi-Speciality Hospital · Banashankari, Bangalore</span>
@@ -501,17 +582,35 @@ footer a:hover{color:var(--teal-2)}
 <section class="sec about" id="about">
   <div class="wrap about-grid">
     <div class="about-media reveal">
-      <div class="frame">
-        <svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <rect width="400" height="420" fill="#cbe8e5"/>
-          <circle cx="300" cy="90" r="90" fill="#0f7a86" opacity="0.15"/>
-          <rect x="40" y="150" width="320" height="230" rx="18" fill="#ffffff" opacity="0.6"/>
-          <rect x="70" y="185" width="120" height="14" rx="7" fill="#0b3b53" opacity="0.3"/>
-          <rect x="70" y="215" width="200" height="10" rx="5" fill="#0b3b53" opacity="0.2"/>
-          <rect x="70" y="235" width="170" height="10" rx="5" fill="#0b3b53" opacity="0.2"/>
-          <path d="M70 300 h40 l12 -28 16 56 12 -28 h130" stroke="#0f7a86" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="150" cy="80" r="34" fill="#e0a458" opacity="0.7"/>
-        </svg>
+      <div class="frame care-card">
+        <div class="cc-top">
+          <img class="cc-emblem" src="promed-emblem.png" alt="" width="113" height="112" />
+          <div class="cc-head">
+            <strong>Care you can trust</strong>
+            <small>Banashankari 2nd Stage · Bangalore</small>
+          </div>
+        </div>
+        <div class="cc-mid">
+          <div class="cc-ring" role="img" aria-label="95 percent of patients would recommend us">
+            <svg viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(11,59,83,.1)" stroke-width="11"/>
+              <circle cx="60" cy="60" r="52" fill="none" stroke="var(--gold)" stroke-width="11" stroke-linecap="round"
+                      stroke-dasharray="326.7" stroke-dashoffset="16.3" transform="rotate(-90 60 60)"/>
+            </svg>
+            <div class="cc-ring-txt"><b>95%</b><span>recommend us</span></div>
+          </div>
+          <div class="cc-rating">
+            <div class="cc-stars">★★★★★</div>
+            <div><b>4.5</b> / 5</div>
+            <span>172 patient stories</span>
+          </div>
+        </div>
+        <ul class="cc-list">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Accurate diagnosis, minimal tests</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Transparent, honest billing</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Caring nursing staff, round the clock</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>No unnecessary medicines</li>
+        </ul>
       </div>
       <div class="stat-chip" style="bottom:-24px;left:-18px">
         <div class="n">25</div><div class="t">In-patient Beds</div>
@@ -528,6 +627,42 @@ footer a:hover{color:var(--teal-2)}
         <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Cashless treatment with leading insurance partners</li>
       </ul>
       <a href="#book" class="btn btn-primary">Plan your visit</a>
+    </div>
+  </div>
+</section>
+
+<!-- why promed (bento) -->
+<section class="sec why" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why families choose us</span>
+      <h2>Big-hospital standards, <em>neighbourhood</em> warmth.</h2>
+    </div>
+    <div class="bento">
+      <article class="b b-lg reveal">
+        <div>
+          <span class="k">Always here for you</span>
+          <div class="v" style="font-size:clamp(3rem,7vw,4.6rem);margin-top:.6rem">24<span style="opacity:.6">×</span>7</div>
+        </div>
+        <p style="max-width:34ch">Emergency &amp; casualty services never close. Whatever the hour, there's a team ready — because health doesn't keep office hours.</p>
+        <svg viewBox="0 0 300 40" preserveAspectRatio="none" style="width:100%;height:34px;opacity:.75"><path d="M0 20h60l8-15 10 30 8-15h40l7-9 9 18 6-9h137" fill="none" stroke="#e0a458" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </article>
+      <article class="b reveal"><span class="k">In-patient beds</span><div class="v">25</div><p>Comfortable, well-equipped rooms.</p></article>
+      <article class="b reveal"><span class="k">Years of care</span><div class="v">31</div><p>Led by a senior specialist.</p></article>
+      <article class="b b-teal reveal"><span class="k">Patient rating</span><div class="v">4.5★</div><p>From 172 verified stories.</p></article>
+      <article class="b reveal">
+        <span class="k">Access</span>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" style="margin:.4rem 0;color:var(--teal)"><circle cx="12" cy="4" r="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 8h5l1 5h3M9 8v6h5m-5 0a4 4 0 1 0 3.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p><strong style="color:var(--deep)">Wheelchair accessible</strong> &amp; senior-friendly premises.</p>
+      </article>
+      <article class="b b-wide reveal">
+        <span class="k">Cashless treatment</span>
+        <p style="margin:.5rem 0 0;font-family:var(--serif);font-size:1.35rem;color:var(--deep);line-height:1.3">Partnered with Star, Care, Max Bupa &amp; Shriram — so your cover does the heavy lifting.</p>
+      </article>
+      <article class="b b-wide reveal">
+        <span class="k">No surprises</span>
+        <p style="margin:.5rem 0 0;font-family:var(--serif);font-size:1.35rem;color:var(--deep);line-height:1.3">Transparent billing, honest advice, and only the tests you actually need.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -917,6 +1052,66 @@ const QUOTES = [
     ents.forEach(e=>{ if(e.isIntersecting){ schedule(); } else { clearInterval(timer); } });
   }, {threshold:.35});
   qObserver.observe(stage);
+})();
+
+// ---- scroll progress meter ----
+const prog = document.getElementById('progress');
+addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const s = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+  prog.style.width = (s * 100) + '%';
+}, {passive:true});
+
+const fine = matchMedia('(pointer:fine)').matches;
+const noMotion = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+// ---- cursor spotlight ----
+const spot = document.getElementById('spotlight');
+if (fine && !noMotion) {
+  addEventListener('mousemove', e => { spot.style.opacity = '1'; spot.style.left = e.clientX + 'px'; spot.style.top = e.clientY + 'px'; }, {passive:true});
+  document.addEventListener('mouseleave', () => spot.style.opacity = '0');
+}
+
+// ---- magnetic buttons ----
+if (fine && !noMotion) {
+  document.querySelectorAll('.btn-primary,.btn-gold').forEach(b => {
+    b.addEventListener('mousemove', e => {
+      const r = b.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width/2, y = e.clientY - r.top - r.height/2;
+      b.style.transform = `translate(${x*0.16}px, ${y*0.3}px)`;
+    });
+    b.addEventListener('mouseleave', () => b.style.transform = '');
+  });
+}
+
+// ---- living ECG heartbeat ----
+(function(){
+  const c = document.getElementById('ecg'); if(!c) return;
+  const ctx = c.getContext('2d'); let w, h, dpr;
+  function size(){ dpr = Math.min(devicePixelRatio||1, 2); w = c.clientWidth; h = c.clientHeight; c.width = w*dpr; c.height = h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+  size(); addEventListener('resize', size);
+  function ecgY(x, mid){
+    const p = ((x % 200) + 200) % 200; let y = 0;
+    if (p > 62 && p < 68) y = -5;        // P wave
+    else if (p >= 72 && p < 76) y = 9;   // Q
+    else if (p >= 76 && p < 80) y = -48; // R spike
+    else if (p >= 80 && p < 84) y = 24;  // S
+    else if (p > 98 && p < 112) y = -11; // T wave
+    return mid + y;
+  }
+  let off = 0;
+  const grad = () => { const g = ctx.createLinearGradient(0,0,w,0);
+    g.addColorStop(0,'rgba(224,164,88,0)'); g.addColorStop(.16,'rgba(224,164,88,.95)');
+    g.addColorStop(.84,'rgba(19,162,166,.95)'); g.addColorStop(1,'rgba(19,162,166,0)'); return g; };
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    const mid = h*0.55;
+    ctx.beginPath();
+    for (let x=0; x<=w; x+=2){ const y = ecgY(x+off, mid); x===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y); }
+    ctx.strokeStyle = grad(); ctx.lineWidth = 2.3; ctx.lineJoin='round'; ctx.lineCap='round'; ctx.stroke();
+    if (!noMotion){ off += 1.5; requestAnimationFrame(draw); }
+  }
+  draw();
 })();
 </script>
 </body>
