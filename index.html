@@ -8,7 +8,8 @@
 <meta name="theme-color" content="#0b3b53" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="promed-emblem.png" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
 <style>
 :root{
   --ink:#0a2530;
@@ -85,15 +86,14 @@ nav{
 }
 header.scrolled nav{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px rgba(10,37,48,.5)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0;gap:1rem}
-.brand{display:flex;align-items:center;gap:.7rem;font-weight:800}
-.brand .mark{
-  width:44px;height:44px;border-radius:13px;flex:none;position:relative;
-  background:linear-gradient(135deg,var(--teal),var(--deep));
-  display:grid;place-items:center;box-shadow:var(--shadow-sm);
-}
-.brand .mark svg{width:24px;height:24px}
-.brand .txt strong{font-family:var(--serif);font-size:1.22rem;color:var(--deep);display:block;line-height:1}
-.brand .txt span{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);font-weight:700}
+.brand{display:inline-flex;align-items:center;gap:.7rem;text-decoration:none}
+.logo-emblem-img{height:44px;width:auto;display:block;flex:none}
+.logo-word-img{height:38px;width:auto;display:block}
+@media(max-width:400px){.logo-word-img{height:32px}.logo-emblem-img{height:38px}}
+/* footer: whiten the grey logo for the dark background (shape/identity preserved) */
+.foot-brand .brand .logo-emblem-img,
+.foot-brand .brand .logo-word-img{filter:brightness(0) invert(1)}
+.foot-brand .brand{margin-bottom:.2rem}
 .menu{display:flex;gap:.4rem;align-items:center}
 .menu a{padding:.55rem .85rem;border-radius:10px;font-weight:600;font-size:.92rem;color:var(--ink);transition:.25s}
 .menu a:hover{background:var(--mint);color:var(--teal)}
@@ -276,12 +276,16 @@ footer{background:var(--ink);color:#a9c2c9;padding:clamp(3rem,6vw,5rem) 0 2rem}
 footer h4{color:#fff;font-family:var(--sans);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.2rem;font-weight:700}
 footer a{display:block;padding:.3rem 0;font-size:.92rem;transition:.25s}
 footer a:hover{color:var(--teal-2)}
-.foot-brand .brand .txt strong{color:#fff}
+.foot-brand .brand .lw-main{color:#fff}
+.foot-brand .brand .lw-sub{color:var(--teal-2)}
 .foot-brand p{font-size:.9rem;margin:1rem 0;max-width:34ch}
 .socials{display:flex;gap:.6rem}
 .socials a{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.08);display:grid;place-items:center;padding:0}
 .socials a:hover{background:var(--teal)}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.6rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.82rem}
+.foot-credit{text-align:center;margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.07);font-size:.8rem;color:#7f97a0;letter-spacing:.02em}
+.foot-credit a{display:inline;color:var(--teal-2);font-weight:700;transition:.25s}
+.foot-credit a:hover{color:#fff}
 
 /* floating call */
 .fab{position:fixed;right:20px;bottom:20px;z-index:70;display:flex;flex-direction:column;gap:.7rem}
@@ -334,11 +338,9 @@ footer a:hover{color:var(--teal-2)}
 <header id="top">
   <nav>
     <div class="wrap nav-inner">
-      <a href="#top" class="brand">
-        <span class="mark">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-9C1 8.5 3 4.5 7 4.5c2 0 3.4 1.2 5 3 1.6-1.8 3-3 5-3 4 0 6 4 4.5 7.5C19 16.65 12 21 12 21Z" stroke="#fff" stroke-width="1.6"/><path d="M7.5 12h2l1.2-2.2L13 14l1.2-2h2.3" stroke="#e0a458" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <span class="txt"><strong>Promed</strong><span>Hospital</span></span>
+      <a href="#top" class="brand" aria-label="ProMED Hospital home">
+        <img class="logo-emblem-img" src="promed-emblem.png" alt="" width="113" height="112" />
+        <img class="logo-word-img" src="promed-wordmark.png" alt="ProMED Hospital" width="679" height="242" />
       </a>
       <div class="menu" id="menu">
         <a href="#specialties">Specialities</a>
@@ -688,9 +690,9 @@ footer a:hover{color:var(--teal-2)}
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="#top" class="brand">
-          <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-9C1 8.5 3 4.5 7 4.5c2 0 3.4 1.2 5 3 1.6-1.8 3-3 5-3 4 0 6 4 4.5 7.5C19 16.65 12 21 12 21Z" stroke="#fff" stroke-width="1.6"/><path d="M7.5 12h2l1.2-2.2L13 14l1.2-2h2.3" stroke="#e0a458" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <span class="txt"><strong>Promed</strong><span>Hospital</span></span>
+        <a href="#top" class="brand" aria-label="ProMED Hospital home">
+          <img class="logo-emblem-img" src="promed-emblem.png" alt="" width="113" height="112" />
+          <img class="logo-word-img" src="promed-wordmark.png" alt="ProMED Hospital" width="679" height="242" />
         </a>
         <p>Compassionate, patient-centred multi-speciality care for the families of Banashankari and greater Bangalore.</p>
         <div class="socials">
@@ -724,8 +726,11 @@ footer a:hover{color:var(--teal-2)}
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© <span id="yr"></span> Promed Hospital, Banashankari 2nd Stage, Bangalore. All rights reserved.</span>
+      <span>© <span id="yr"></span> ProMED Hospital, Banashankari 2nd Stage, Bangalore. All rights reserved.</span>
       <span>Multi-Speciality Hospital · Open 24 × 7 · Wheelchair accessible</span>
+    </div>
+    <div class="foot-credit">
+      Designed &amp; Developed by <a href="https://www.stacknet.dev" target="_blank" rel="noopener">www.stacknet.dev</a>
     </div>
   </div>
 </footer>
