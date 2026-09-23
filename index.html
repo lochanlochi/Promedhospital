@@ -221,6 +221,26 @@ header.scrolled nav{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px
 .story .who small{color:var(--muted);font-size:.76rem}
 .stars{color:var(--gold);font-size:.9rem;letter-spacing:2px}
 
+/* words of wellness */
+.quotes{background:linear-gradient(155deg,#0b3b53 0%,#0f5f6d 55%,#0f7a86 100%);color:#eaf6f5;overflow:hidden;position:relative}
+.quotes::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(45% 60% at 85% 15%,rgba(19,162,166,.35),transparent 60%),radial-gradient(40% 55% at 10% 95%,rgba(224,164,88,.18),transparent 60%)}
+.quotes .wrap{position:relative;z-index:1}
+.q-inner{max-width:880px;margin-inline:auto;text-align:center}
+.q-pill{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#0b3b53;background:var(--gold);padding:.4rem .95rem;border-radius:999px}
+.q-mark{font-family:var(--serif);font-size:5.5rem;line-height:0;height:2.2rem;color:var(--gold);opacity:.85;margin:1.6rem 0 .4rem}
+.q-stage{transition:opacity .5s ease,transform .5s ease}
+.q-stage.fading{opacity:0;transform:translateY(10px)}
+.q-text{font-family:var(--serif);font-weight:500;font-style:italic;font-size:clamp(1.5rem,3.8vw,2.6rem);line-height:1.32;color:#fff;letter-spacing:-.01em}
+.q-author{display:block;margin-top:1.6rem;font-family:var(--sans);font-style:normal;font-weight:700;font-size:1rem;letter-spacing:.03em;color:var(--gold)}
+.q-author::before{content:"— "}
+.q-nav{display:flex;align-items:center;justify-content:center;gap:1.2rem;margin-top:2.6rem}
+.q-arrow{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;cursor:pointer;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);transition:.3s}
+.q-arrow:hover{background:var(--gold);color:#0b3b53;border-color:var(--gold);transform:translateY(-2px)}
+.q-bar{width:120px;height:4px;border-radius:4px;background:rgba(255,255,255,.18);overflow:hidden}
+.q-bar span{display:block;height:100%;width:0;background:var(--gold);border-radius:4px}
+.q-bar span.run{width:100%;transition:width 8s linear}
+@media(max-width:520px){.q-bar{width:80px}}
+
 /* insurance */
 .ins-grid{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
 .ins{
@@ -580,6 +600,29 @@ footer a:hover{color:var(--teal-2)}
   </div>
 </section>
 
+<!-- words of wellness -->
+<section class="sec quotes" id="wellness">
+  <div class="wrap">
+    <div class="q-inner">
+      <span class="q-pill" id="qPill">Words of Wellness</span>
+      <div class="q-mark" aria-hidden="true">“</div>
+      <div class="q-stage" id="qStage">
+        <blockquote class="q-text" id="qText">The greatest wealth is health.</blockquote>
+        <cite class="q-author" id="qAuthor">Virgil</cite>
+      </div>
+      <div class="q-nav">
+        <button class="q-arrow" id="qPrev" aria-label="Previous quote">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="q-bar"><span id="qBar"></span></div>
+        <button class="q-arrow" id="qNext" aria-label="Next quote">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- insurance -->
 <section class="sec" id="insurance">
   <div class="wrap">
@@ -793,6 +836,88 @@ form.addEventListener('submit', e => {
   form.querySelector('button[type=submit]').textContent = 'Request sent ✓';
   setTimeout(()=>form.reset(), 400);
 });
+
+// ---- Words of Wellness: a quote for every day of the year ----
+const QUOTES = [
+  {t:"The greatest wealth is health.", a:"Virgil"},
+  {t:"Let food be thy medicine and medicine be thy food.", a:"Hippocrates"},
+  {t:"It is health that is real wealth and not pieces of gold and silver.", a:"Mahatma Gandhi"},
+  {t:"Take care of your body. It's the only place you have to live.", a:"Jim Rohn"},
+  {t:"He who has health has hope; and he who has hope has everything.", a:"Arabian Proverb"},
+  {t:"The good physician treats the disease; the great physician treats the patient who has the disease.", a:"William Osler"},
+  {t:"To keep the body in good health is a duty, for otherwise we shall not be able to keep our mind strong and clear.", a:"Buddha"},
+  {t:"Healing is a matter of time, but it is sometimes also a matter of opportunity.", a:"Hippocrates"},
+  {t:"A good laugh and a long sleep are the best cures in the doctor's book.", a:"Irish Proverb"},
+  {t:"The first wealth is health.", a:"Ralph Waldo Emerson"},
+  {t:"Wherever the art of medicine is loved, there is also a love of humanity.", a:"Hippocrates"},
+  {t:"Happiness is the highest form of health.", a:"Dalai Lama"},
+  {t:"Prevention is better than cure.", a:"Desiderius Erasmus"},
+  {t:"Physical fitness is the first requisite of happiness.", a:"Joseph Pilates"},
+  {t:"Health is a state of complete harmony of the body, mind and spirit.", a:"B.K.S. Iyengar"},
+  {t:"A healthy outside starts from the inside.", a:"Robert Urich"},
+  {t:"Time and health are two precious assets that we don't recognize until they have been depleted.", a:"Denis Waitley"},
+  {t:"The art of medicine consists of amusing the patient while nature cures the disease.", a:"Voltaire"},
+  {t:"Sleep is the best meditation.", a:"Dalai Lama"},
+  {t:"It is more important to know what sort of person has a disease than to know what sort of disease a person has.", a:"Hippocrates"},
+  {t:"Good health and good sense are two of life's greatest blessings.", a:"Publilius Syrus"},
+  {t:"Life is not merely being alive, but being well.", a:"Martial"},
+  {t:"Early to bed and early to rise makes a man healthy, wealthy and wise.", a:"Benjamin Franklin"},
+  {t:"The best doctor gives the least medicines.", a:"Benjamin Franklin"},
+  {t:"When health is absent, wisdom cannot reveal itself.", a:"Herophilus"},
+  {t:"A merry heart doeth good like a medicine.", a:"Proverbs 17:22"},
+  {t:"Those who think they have no time for healthy eating will sooner or later have to find time for illness.", a:"Edward Stanley"},
+  {t:"Your body hears everything your mind says.", a:"Naomi Judd"},
+  {t:"Health is not valued till sickness comes.", a:"Thomas Fuller"},
+  {t:"The doctor of the future will interest patients in the care of the human frame, in diet, and in the cause and prevention of disease.", a:"Thomas Edison"},
+  {t:"Compassion is the basis of all morality.", a:"Arthur Schopenhauer"},
+  {t:"There is no medicine like hope, no incentive so great, and no tonic so powerful as expectation of something better tomorrow.", a:"Orison Swett Marden"},
+  {t:"An apple a day keeps the doctor away.", a:"English Proverb"},
+  {t:"Rest and self-care are so important. You cannot serve from an empty vessel.", a:"Eleanor Brown"},
+  {t:"The wish for healing has always been half of health.", a:"Seneca"},
+  {t:"Nurses dispense comfort, compassion and caring without even a prescription.", a:"Val Saintsbury"},
+  {t:"Cure sometimes, treat often, comfort always.", a:"Hippocrates"},
+  {t:"A calm mind brings inner strength and self-confidence, so that's very important for good health.", a:"Dalai Lama"},
+  {t:"Kindness is the language which the deaf can hear and the blind can see.", a:"Mark Twain"},
+  {t:"Health is the crown on the well person's head that only the ill person can see.", a:"Robin Sharma"}
+];
+
+(function(){
+  const stage = document.getElementById('qStage');
+  const qText = document.getElementById('qText');
+  const qAuthor = document.getElementById('qAuthor');
+  const qBar = document.getElementById('qBar');
+  const qPill = document.getElementById('qPill');
+  const prev = document.getElementById('qPrev');
+  const next = document.getElementById('qNext');
+  if(!stage) return;
+
+  const now = new Date();
+  const start = new Date(now.getFullYear(),0,0);
+  const dayOfYear = Math.floor((now - start) / 86400000);
+  let idx = ((dayOfYear % QUOTES.length) + QUOTES.length) % QUOTES.length;
+  let timer;
+
+  qPill.textContent = 'Quote of the Day · ' + now.toLocaleDateString('en-IN',{day:'numeric',month:'long'});
+
+  function paint(){
+    const q = QUOTES[idx];
+    stage.classList.add('fading');
+    setTimeout(()=>{ qText.textContent = q.t; qAuthor.textContent = q.a; stage.classList.remove('fading'); }, 420);
+  }
+  function runBar(){ qBar.classList.remove('run'); void qBar.offsetWidth; qBar.classList.add('run'); }
+  function schedule(){ clearInterval(timer); runBar(); timer = setInterval(()=>{ idx=(idx+1)%QUOTES.length; paint(); runBar(); }, 8000); }
+  function go(n){ idx=((idx+n)%QUOTES.length+QUOTES.length)%QUOTES.length; paint(); schedule(); }
+
+  qText.textContent = QUOTES[idx].t; qAuthor.textContent = QUOTES[idx].a;
+  prev.addEventListener('click',()=>go(-1));
+  next.addEventListener('click',()=>go(1));
+
+  // start rotating only when the section scrolls into view
+  const qObserver = new IntersectionObserver((ents)=>{
+    ents.forEach(e=>{ if(e.isIntersecting){ schedule(); } else { clearInterval(timer); } });
+  }, {threshold:.35});
+  qObserver.observe(stage);
+})();
 </script>
 </body>
 </html>
