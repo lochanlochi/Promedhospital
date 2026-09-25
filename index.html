@@ -108,7 +108,7 @@ nav{
 }
 header.scrolled nav{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px rgba(10,37,48,.5)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0;gap:1rem}
-.brand{display:inline-flex;align-items:center;gap:.7rem;text-decoration:none}
+.brand{display:inline-flex;align-items:center;gap:.7rem;text-decoration:none;flex:none}
 .logo-emblem-img{height:44px;width:auto;display:block;flex:none}
 .logo-word-img{height:38px;width:auto;display:block}
 @media(max-width:400px){.logo-word-img{height:32px}.logo-emblem-img{height:38px}}
@@ -118,6 +118,8 @@ header.scrolled nav{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px
 .foot-brand .brand{margin-bottom:.2rem}
 .menu{display:flex;gap:.4rem;align-items:center}
 .menu a{padding:.55rem .85rem;border-radius:10px;font-weight:600;font-size:.92rem;color:var(--ink);transition:.25s}
+.menu a{white-space:nowrap}
+@media(min-width:1200px){.nav-inner{gap:.6rem}.menu{gap:0}.menu a{padding:.5rem .55rem;font-size:.86rem}.nav-cta{gap:.45rem}.nav-cta .btn{padding-inline:1.15rem;font-size:.88rem}}
 .menu a:hover{background:var(--mint);color:var(--teal)}
 .menu .mi,.menu-label,.menu-foot,.menu-scrim{display:none}
 .nav-cta{display:flex;gap:.6rem;align-items:center}
@@ -132,6 +134,8 @@ header.scrolled nav{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px
     radial-gradient(60% 55% at 82% 8%,rgba(19,162,166,.16),transparent 60%),
     radial-gradient(50% 60% at 8% 90%,rgba(224,164,88,.14),transparent 60%);
 }
+.hero-photo{position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:url("reception.webp") center/cover no-repeat;opacity:.35}
 .blob{position:absolute;border-radius:50%;filter:blur(10px);z-index:-1;opacity:.5}
 .hero::after{content:"";position:absolute;z-index:-1;left:-10%;right:-10%;top:-32%;height:90%;pointer-events:none;
   background:
@@ -157,15 +161,24 @@ header.scrolled nav{border-bottom-color:var(--line);box-shadow:0 10px 30px -22px
 .hero-visual{position:relative}
 .hero-card{
   border-radius:28px;overflow:hidden;position:relative;
-  aspect-ratio:4/4.6;box-shadow:var(--shadow);
+  aspect-ratio:1/1;box-shadow:var(--shadow);
   background:
     linear-gradient(180deg,rgba(11,59,83,0) 40%,rgba(11,59,83,.72)),
     linear-gradient(135deg,#0f7a86,#0b3b53);
 }
-.hero-card .scene{position:absolute;inset:0;opacity:.9}
+.hero-card .scene-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:75% 45%}
+.hero-card::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,59,83,.08) 0%,rgba(11,59,83,0) 35%,rgba(11,59,83,.55) 70%,rgba(8,34,48,.9) 100%)}
+.hero-card .caption{z-index:1}
 .hero-card .caption{position:absolute;left:0;right:0;bottom:0;padding:1.6rem;color:#fff}
 .hero-card .caption h3{color:#fff;font-size:1.35rem}
 .hero-card .caption p{font-size:.9rem;opacity:.85}
+@media(max-width:720px){
+  .hero-card{aspect-ratio:auto;display:flex;flex-direction:column;background:var(--deep)}
+  .hero-card::after{display:none}
+  .hero-card .scene-photo{position:relative;height:auto;aspect-ratio:4/3;object-position:70% 45%}
+  .hero-card .caption{position:relative;padding:1.2rem 1.3rem 1.3rem}
+}
 .float-badge{
   position:absolute;background:var(--white);border-radius:16px;padding:.85rem 1.05rem;
   box-shadow:var(--shadow);display:flex;align-items:center;gap:.7rem;
@@ -371,6 +384,28 @@ form.card p.sub{color:var(--muted);font-size:.9rem;margin-bottom:1.5rem}
 .map-pin strong{display:block;font-size:.98rem;color:var(--deep)}
 .map-pin small{color:var(--teal);font-size:.8rem;font-weight:700}
 
+/* decorative line-art behind sections */
+section:has(>.sec-art){overflow:hidden}
+.sec-art{position:absolute;z-index:0;pointer-events:none;background:no-repeat center/contain;opacity:.13}
+.sec-art~.wrap{position:relative;z-index:1}
+.art-steth{background-image:url("art/stethoscope.svg");width:470px;height:470px;top:30px;right:-80px;opacity:.24}
+.art-dna{background-image:url("art/dna.svg");width:200px;height:500px;top:50%;right:-10px;transform:translateY(-50%) rotate(16deg);opacity:.26}
+.art-heart{background-image:url("art/heart-ecg.svg");width:440px;height:440px;top:10px;right:-70px;opacity:.22}
+.art-mol{background-image:url("art/molecule.svg");width:580px;height:400px;right:-90px;bottom:-50px;opacity:.15}
+.art-caps{background-image:url("art/capsules.svg");width:400px;height:400px;top:20px;left:-80px;opacity:.24}
+.art-sprig{background-image:url("art/sprig.svg");width:340px;height:500px;right:-20px;bottom:-60px;opacity:.2}
+.art-shield{background-image:url("art/shield.svg");width:400px;height:400px;top:10px;left:-70px;opacity:.22}
+.art-cross{background-image:url("art/crosses.svg");width:440px;height:440px;top:-30px;left:-50px;opacity:.16}
+@media(max-width:720px){
+  .sec-art{opacity:.14}
+  .art-steth,.art-heart,.art-caps,.art-shield,.art-cross{width:260px;height:260px}
+  .art-steth,.art-heart{right:-70px}
+  .art-caps,.art-shield,.art-cross{left:-70px}
+  .art-dna{width:120px;height:300px;right:-30px}
+  .art-mol{width:340px;height:240px;right:-90px}
+  .art-sprig{width:200px;height:300px;right:-40px}
+}
+
 /* footer */
 footer{background:var(--ink);color:#a9c2c9;padding:clamp(3rem,6vw,5rem) 0 2rem}
 .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:2.4rem;margin-bottom:3rem}
@@ -384,6 +419,9 @@ footer a:hover{color:var(--teal-2)}
 .socials a{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.08);display:grid;place-items:center;padding:0}
 .socials a:hover{background:var(--teal)}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.6rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.82rem}
+.foot-legal{display:flex;justify-content:center;flex-wrap:wrap;gap:.3rem 2rem;margin-top:1.2rem;font-size:.84rem}
+.foot-legal a{display:inline;padding:.2rem 0;color:#c9dade;font-weight:600}
+.foot-legal a:hover{color:var(--teal-2)}
 .foot-credit{text-align:center;margin-top:1.4rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.07);font-size:.8rem;color:#7f97a0;letter-spacing:.02em}
 .foot-credit a{display:inline;color:var(--teal-2);font-weight:700;transition:.25s}
 .foot-credit a:hover{color:#fff}
@@ -409,7 +447,7 @@ footer a:hover{color:var(--teal-2)}
   .badge-rating{left:2%}
   .badge-24{right:2%}
 }
-@media(max-width:1100px){
+@media(max-width:1199px){
   .menu{display:none}
   .burger{display:flex}
   .burger{width:44px;height:44px;align-items:center;justify-content:center;border-radius:12px;transition:background .25s}
@@ -598,6 +636,7 @@ footer a:hover{color:var(--teal-2)}
 
 <!-- hero -->
 <section class="hero">
+  <div class="hero-photo" aria-hidden="true"></div>
   <canvas id="ecg" class="hero-ecg" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
     <div class="hero-copy reveal">
@@ -619,21 +658,7 @@ footer a:hover{color:var(--teal-2)}
     </div>
     <div class="hero-visual reveal">
       <div class="hero-card">
-        <svg class="scene" viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17b3b7"/><stop offset="1" stop-color="#0b3b53"/></linearGradient>
-          </defs>
-          <rect width="400" height="460" fill="url(#g1)"/>
-          <circle cx="320" cy="80" r="120" fill="#ffffff" opacity="0.06"/>
-          <circle cx="70" cy="360" r="150" fill="#ffffff" opacity="0.05"/>
-          <path d="M0 300 Q120 250 200 300 T400 290 V460 H0 Z" fill="#ffffff" opacity="0.06"/>
-          <g stroke="#ffffff" stroke-width="3" opacity="0.5" fill="none">
-            <path d="M120 150 h50 v-30 h40 v30 h50 v40 h-50 v30 h-40 v-30 h-50 z"/>
-          </g>
-          <g opacity="0.85">
-            <path d="M60 220 h40 l15 -35 20 70 15 -35 h40" stroke="#e0a458" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </g>
-        </svg>
+        <img class="scene-photo" src="hospital-front.webp" alt="ProMED Hospital building, Banashankari 2nd Stage, Bangalore" width="2000" height="1119" fetchpriority="high" />
         <div class="caption">
           <h3>Compassion in every corner</h3>
           <p>Modern diagnostics · 25 beds · wheelchair accessible · caring nursing staff</p>
@@ -663,6 +688,7 @@ footer a:hover{color:var(--teal-2)}
 
 <!-- specialties -->
 <section class="sec" id="specialties">
+  <div class="sec-art art-steth" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">What we treat</span>
@@ -716,6 +742,7 @@ footer a:hover{color:var(--teal-2)}
 
 <!-- about -->
 <section class="sec about" id="about">
+  <div class="sec-art art-dna" aria-hidden="true"></div>
   <div class="wrap about-grid">
     <div class="about-media reveal">
       <div class="frame care-card">
@@ -769,6 +796,7 @@ footer a:hover{color:var(--teal-2)}
 
 <!-- why promed (bento) -->
 <section class="sec why" id="why">
+  <div class="sec-art art-heart" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Why families choose us</span>
@@ -805,6 +833,7 @@ footer a:hover{color:var(--teal-2)}
 
 <!-- doctor -->
 <section class="sec doctor" id="doctor">
+  <div class="sec-art art-mol" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head reveal" style="max-width:600px">
       <span class="eyebrow" style="color:var(--gold)">Meet the specialist</span>
@@ -836,6 +865,7 @@ footer a:hover{color:var(--teal-2)}
 
 <!-- stories -->
 <section class="sec stories" id="stories">
+  <div class="sec-art art-caps" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="eyebrow">Patient stories</span>
@@ -873,6 +903,7 @@ footer a:hover{color:var(--teal-2)}
 
 <!-- words of wellness -->
 <section class="sec quotes" id="wellness">
+  <div class="sec-art art-sprig" aria-hidden="true"></div>
   <div class="wrap">
     <div class="q-inner">
       <span class="q-pill" id="qPill">Words of Wellness</span>
@@ -896,6 +927,7 @@ footer a:hover{color:var(--teal-2)}
 
 <!-- insurance -->
 <section class="sec" id="insurance">
+  <div class="sec-art art-shield" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="eyebrow">Cashless &amp; covered</span>
@@ -913,6 +945,7 @@ footer a:hover{color:var(--teal-2)}
 
 <!-- book / contact -->
 <section class="sec book" id="book">
+  <div class="sec-art art-cross" aria-hidden="true"></div>
   <div class="wrap book-grid">
     <div class="book-info reveal">
       <span class="eyebrow" style="color:var(--gold)">Get in touch</span>
@@ -1042,6 +1075,11 @@ footer a:hover{color:var(--teal-2)}
     <div class="foot-bottom">
       <span>© <span id="yr"></span> ProMED Hospital, Banashankari 2nd Stage, Bangalore. All rights reserved.</span>
       <span>Multi-Speciality Hospital · Open 24 × 7 · Wheelchair accessible</span>
+    </div>
+    <div class="foot-legal" role="navigation" aria-label="Legal">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="disclaimer.html">Disclaimer</a>
     </div>
     <div class="foot-credit">
       Designed &amp; Developed by <a href="https://www.stacknet.dev" target="_blank" rel="noopener">www.stacknet.dev</a>
